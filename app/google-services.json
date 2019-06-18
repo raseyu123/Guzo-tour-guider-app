@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "122206256996",
+    "firebase_url": "https://guzofinal.firebaseio.com",
+    "project_id": "guzofinal",
+    "storage_bucket": "guzofinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122206256996:android:349e0d33fb1188e6",
+        "android_client_info": {
+          "package_name": "com.example.guzo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122206256996-fa2of7pnuf3a8u9aki5l69o1fmsaqjq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guzo",
+            "certificate_hash": "9ebab57cc8a14df3c49546e7103270d15c8625c7"
+          }
+        },
+        {
+          "client_id": "122206256996-8somfd53lm1lg3q1q47nbarutbjk3fj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp2xFywWyWEzRQ988Zy2UnulYi_hQJyvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122206256996-8somfd53lm1lg3q1q47nbarutbjk3fj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

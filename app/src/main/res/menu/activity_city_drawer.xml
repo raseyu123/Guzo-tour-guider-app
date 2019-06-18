@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single"
+        android:menuCategory="container">
+        <item
+            android:id="@+id/nav_discover"
+            android:icon="@drawable/ic_directions_black_24dp"
+            android:title="@string/discover" />
+        <item
+            android:id="@+id/nav_need_to"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/need_to_know" />
+        <item
+            android:id="@+id/nav_fav"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/my_favorites" />
+
+        <item  android:id="@+id/nav_view_city"
+
+            android:icon="@drawable/ic_search"
+
+            android:title="@string/view_all_cities" />
+
+    </group>
+
+</menu>

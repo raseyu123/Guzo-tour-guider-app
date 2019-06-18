@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardPlace"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_margin="7dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="10dp"
+    tools:targetApi="lollipop">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/placeImage"
+            android:layout_width="match_parent"
+            android:layout_height="104dp"
+
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/cityimage"
+            android:scaleType="centerCrop"
+            android:src="@drawable/guzo" />
+
+        <TextView
+            android:id="@+id/placeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/placeImage"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#0E0C0C"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/placeCatagory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/placeName"
+
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="@string/my_favorites" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

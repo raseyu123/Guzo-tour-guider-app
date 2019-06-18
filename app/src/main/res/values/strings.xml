@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">guzo</string>
+    <string name="guzop">guzoP</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="search">search</string>
+    <string name="cityimage">CityImage</string>
+    <string name="tab5">Tab5</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_city">City</string>
+    <string name="all">All</string>
+    <string name="museums">Museum</string>
+    <string name="hotels">Hotel</string>
+    <string name="hospitals">Hospital</string>
+    <string name="banks">Banks</string>
+    <string name="discover">Discover</string>
+    <string name="need_to_know">Need to know</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="view_all_cities">View all cities</string>
+    <string name="todo">TODO</string>
+    <string name="places">places</string>
+    <string name="must_see">Must See</string>
+    <string name="see_all">See all</string>
+    <string name="_1_30_am">1:30 AM</string>
+    <string name="addis_ababa">Addis Ababa</string>
+    <string name="title_activity_city_detail">CityDetail</string>
+    <string name="emergency_information">Emergency Information</string>
+    <string name="information">Information</string>
+    <string name="textview">TextView</string>
+    <string name="hello_blank_fragment">v</string>
+
+</resources>
