@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "122206256996-iuba5gs4cjldnn4j431iq6ns35ereoii.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guzo",
+            "certificate_hash": "1cdc1faa5fc4968cc73bb88032a13b35a63ed374"
+          }
+        },
+        {
           "client_id": "122206256996-fa2of7pnuf3a8u9aki5l69o1fmsaqjq1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
