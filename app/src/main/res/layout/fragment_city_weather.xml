@@ -3,12 +3,184 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
     tools:context=".CityWeather">
+<LinearLayout
+    android:visibility="gone"
+    android:id="@+id/weather_panel"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt_city_name"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="@string/weather_in_addis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_weather"
+            android:src="@drawable/guzo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@null" />
+        <TextView
+            android:id="@+id/txt_temperature"
+            android:textColor="@color/colorPrimary"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:text="@string/_14_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-    <!-- TODO: Update blank fragment layout -->
+    </LinearLayout>
+    <TextView
+    android:id="@+id/txt_description"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:text="@string/weather_in_addis"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+</LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment"/>
+<TextView
+    android:id="@+id/txt_date_time"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:text="@string/weather_in_addis"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+    <TableLayout
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        android:stretchColumns="*"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<TableRow
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<TextView
 
+    android:text="@string/wind"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    />
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_column="1"
+        android:id="@+id/txt_wind"
+        android:text="@string/addis_ababa"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp" />
+</TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+
+            android:text="@string/Pressure"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_column="1"
+            android:id="@+id/txt_pressure"
+            android:text="@string/addis_ababa"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:text="@string/Humiditty"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_humiditty"
+                android:text="@string/addis_ababa"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="8dp" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:text="@string/Sunrise"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_sunrise"
+                android:text="@string/addis_ababa"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="8dp" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:text="@string/Sunset"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_sunset"
+                android:text="@string/addis_ababa"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="8dp" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:text="@string/Geo_coords"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                />
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_geo_coord"
+                android:text="@string/addis_ababa"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="8dp" />
+        </TableRow>
+    </TableLayout>
+    <ProgressBar
+        android:id="@+id/loading"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

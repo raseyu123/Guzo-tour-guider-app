@@ -45,5 +45,13 @@
     <string name="information">Information</string>
     <string name="textview">TextView</string>
     <string name="hello_blank_fragment">v</string>
+    <string name="weather_in_addis">Weather in addis</string>
+    <string name="_14_c">14 C</string>
+    <string name="wind">wind</string>
+    <string name="Pressure" />
+    <string name="Humiditty" />
+    <string name="Sunrise" />
+    <string name="Sunset" />
+    <string name="Geo_coords" />
 
 </resources>
