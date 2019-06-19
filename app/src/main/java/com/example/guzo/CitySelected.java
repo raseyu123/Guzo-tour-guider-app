@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.guzo.Model.CityId;
 import com.example.guzo.Model.city;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -29,12 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class CitySelected extends AppCompatActivity
+
+public class CitySelected extends AppCompatActivity implements OnFragmentInteractionListener
          {
 
 String title="";
     private FragmentManager fragmentManager;
     private Fragment fragment = null;
+  private   CityId cityIds;
 TextView city_name;
 ImageView cityPic;
 String cityId="";
@@ -43,6 +46,7 @@ DatabaseReference city;
 Toolbar toolbar;
 NavigationView navigationView;
 private FrameLayout frameLayout;
+OnFragmentInteractionListener monFragmentInteractionListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +65,9 @@ private FrameLayout frameLayout;
           cityId = getIntent().getStringExtra("CityId");
       if (!cityId.isEmpty()){
          getDetailCity(cityId);
-
+         // cityIds.setCityId(cityId);
       }
+
     //  String title=getIntent().getStringExtra("city");
         //getSupportActionBar().setTitle(title);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -72,12 +77,20 @@ private FrameLayout frameLayout;
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        final Bundle bundle = new Bundle();
+
+
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         fragmentManager=getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragment = new CityHome();
+
+        final Bundle data = new Bundle();
+        data.putString("Id",cityId);
+        fragment.setArguments(data);
+
         navigationView.setCheckedItem(R.id.nav_discover);
         fragmentTransaction.replace(R.id.fragmentContain, fragment);
         fragmentTransaction.commit();
@@ -90,10 +103,16 @@ private FrameLayout frameLayout;
                 int id = item.getItemId();
                 if (id==R.id.nav_discover){
                     fragment=new CityHome();
+                    fragment.setArguments(data);
                     getSupportActionBar().setTitle(title);
+
+
                 }else if (id==R.id.nav_need_to){
                     fragment = new CityDetailFragment();
+                    fragment.setArguments(data);
                     getSupportActionBar().setTitle("Need to know");
+
+
                 }else if (id==R.id.nav_fav){}
                 else if (id==R.id.nav_view_city){
                 }
@@ -166,6 +185,10 @@ private FrameLayout frameLayout;
     }
 
 
-}
+             @Override
+             public void onFragmentInteraction(String id) {
+       monFragmentInteractionListener.onFragmentInteraction(this.cityId);
+             }
+         }
 
 

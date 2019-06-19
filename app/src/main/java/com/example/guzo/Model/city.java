@@ -4,13 +4,15 @@ public class city {
 
     private String Name;
     private  String Image;
+    private  String Description;
 
     public city() {
 
     }
-    public city(String name, String image){
+    public city(String name, String image, String description){
         Name = name;
         Image = image;
+        Description = description;
     }
 
 
@@ -30,5 +32,13 @@ public class city {
     public void setImage(String image)
     {
         Image = image;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }
