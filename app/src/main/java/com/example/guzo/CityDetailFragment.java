@@ -1,23 +1,17 @@
 package com.example.guzo;
 
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.guzo.Interface.IdListener;
-import com.example.guzo.Model.CityId;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -51,8 +45,8 @@ public class CityDetailFragment extends Fragment implements OnFragmentInteractio
         viewPager = (ViewPager) v.findViewById(R.id.city_detail_container);
         viewPager.setAdapter(new CityDetailPageAdapter(getChildFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
-        assert getArguments() != null;
-        cityId = getArguments().getString("Id");
+      //  assert getArguments() != null;
+      //  cityId = getArguments().getString("Id");
         return v;
     }
 
@@ -61,9 +55,9 @@ public class CityDetailFragment extends Fragment implements OnFragmentInteractio
 
 
 
-        mListener.onFragmentInteraction(cityId);
-        final Bundle data = new Bundle();
-        data.putString("Id",cityId);
+        //mListener.onFragmentInteraction(cityId);
+       // final Bundle data = new Bundle();
+        //data.putString("Id",cityId);
 
 
     }
@@ -86,7 +80,7 @@ public class CityDetailFragment extends Fragment implements OnFragmentInteractio
 
     @Override
     public void onFragmentInteraction(String id) {
-        mListener.onFragmentInteraction(this.cityId);
+        //mListener.onFragmentInteraction(this.cityId);
     }
 
 

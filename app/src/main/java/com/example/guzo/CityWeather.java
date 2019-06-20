@@ -1,48 +1,43 @@
 package com.example.guzo;
 
 
+
+import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
+
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.guzo.Common.Common;
-import com.example.guzo.Model.WeatherResult;
-import com.example.guzo.Retrofit.RetrofitClient;
-import com.squareup.picasso.Picasso;
-
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CityWeather extends Fragment {
-
-ImageView img_weather;
-TextView txt_city_name,txt_humidity,txt_sunrise,txt_sunset,txt_pressure,txt_temp,txt_description,txt_wind,txt_geo_coord,txt_date_time;
-LinearLayout weather_panel;
-ProgressBar loading;
-CompositeDisposable compositeDisposable;
-IOenWeatherMap mService;
-
+    SwipeRefreshLayout swipeRefreshLayout;
+    TextView selectCity, cityField, detailsField, currentTemperatureField, humidity_field, pressure_field, weatherIcon, updatedField;
+    ProgressBar loader;
+    Typeface weatherFont;
+    String city = "Lalibela";
+    /* Please Put your API KEY here */
+    String OPEN_WEATHER_MAP_API = "9943dae0568ad3db55abcee5dd9a4a37";
     public CityWeather() {
-compositeDisposable= new CompositeDisposable();
-        Retrofit retrofit = RetrofitClient.getInstance();
-        mService = retrofit.create(IOenWeatherMap.class);
         // Required empty public constructor
     }
 
@@ -52,43 +47,107 @@ compositeDisposable= new CompositeDisposable();
         // Inflate the layout for this fragment
 
         View view= inflater.inflate(R.layout.fragment_city_weather, container, false);
-         img_weather = (ImageView)view.findViewById(R.id.img_weather);
-         txt_city_name = (TextView)view.findViewById(R.id.txt_city_name);
-         txt_date_time = (TextView)view.findViewById(R.id.txt_date_time);
-         txt_description = (TextView)view.findViewById(R.id.txt_description);
-         txt_humidity = (TextView)view.findViewById(R.id.txt_humiditty);
-         txt_pressure = (TextView)view.findViewById(R.id.txt_pressure);
-         txt_geo_coord = (TextView)view.findViewById(R.id.txt_geo_coord);
-         txt_sunrise = (TextView)view.findViewById(R.id.txt_sunrise);
-         txt_sunset = (TextView)view.findViewById(R.id.txt_sunset);
-         txt_wind = (TextView)view.findViewById(R.id.txt_wind);
-         txt_temp = (TextView)view.findViewById(R.id.txt_temperature);
-     weather_panel =(LinearLayout)view.findViewById(R.id.weather_panel);
-   loading =(ProgressBar)view.findViewById(R.id.loading);
-    getWeatherInformation();
+        loader = (ProgressBar)view. findViewById(R.id.loader);
+       swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.refersh_weather);
+       swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+              android.R.color.holo_green_dark,
+              android.R.color.holo_orange_dark,
+              android.R.color.holo_blue_dark
+       );
+
+        cityField = (TextView)view. findViewById(R.id.city_field);
+        updatedField = (TextView)view. findViewById(R.id.updated_field);
+        detailsField = (TextView)view. findViewById(R.id.details_field);
+        currentTemperatureField = (TextView)view. findViewById(R.id.current_temperature_field);
+        humidity_field = (TextView)view. findViewById(R.id.humidity_field);
+        pressure_field = (TextView)view. findViewById(R.id.pressure_field);
+        weatherIcon = (TextView)view.findViewById(R.id.weather_icon);
+        weatherFont = Typeface.createFromAsset( getActivity().getAssets(),"fonts/weathericons-regular-webfont.ttf") ;
+        weatherIcon.setTypeface(weatherFont);
+
+        taskLoadUp(city);
+
+
+
+
         return view;
     }
 
-    private void getWeatherInformation() {
-        compositeDisposable.add(mService.getWeatherByLatLng(String.valueOf(Common.class),
-                String.valueOf(city.class)),
-                Common.APP_ID,
-                "meteric")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<WeatherResult>() {
-                    @Override
-                    public void accept(WeatherResult weatherResult) throws Exception {
-                        Picasso.get().load(new StringBuilder("https://openweathermap.org/img/w/")
-                                .append(WeatherResult.getWeather().get(0).getIcon())
-                                .append(".png").toString().into(img_weather);
-                    }
-                },new io.reactivex.functions.Consumer<Throwable>(){
-                    @Override
-                    public void accept(Throwable throwable) throws Exception{
-                        Toast.makeText(getActivity(),""+throwable,Toast.LENGTH_SHORT).show();
-                    }
-                });
+    public void taskLoadUp(final String query) {
+          swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+              @Override
+              public void onRefresh() {
+                  if (Function.isNetworkAvailable(getActivity().getBaseContext())) {
+                      DownloadWeather task = new DownloadWeather();
+                      task.execute(query);
+                  } else {
+                      Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                  }
+              }
+
+          });
+          swipeRefreshLayout.post(new Runnable() {
+              @Override
+              public void run() {
+                  if (Function.isNetworkAvailable(getContext())) {
+                      DownloadWeather task = new DownloadWeather();
+                      task.execute(query);
+                  } else {
+                      Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                  }
+              }
+
+          });
+
+
+}
+
+    class DownloadWeather extends AsyncTask< String, Void, String > {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loader.setVisibility(View.VISIBLE);
+
+        }
+        protected String doInBackground(String...args) {
+            String xml = Function.excuteGet("http://api.openweathermap.org/data/2.5/weather?q=" + args[0] +
+                    "&units=metric&appid=" + OPEN_WEATHER_MAP_API);
+            return xml;
+        }
+        @Override
+        protected void onPostExecute(String xml) {
+
+            try {
+                JSONObject json = new JSONObject(xml);
+                if (json != null) {
+                    JSONObject details = json.getJSONArray("weather").getJSONObject(0);
+                    JSONObject main = json.getJSONObject("main");
+                    DateFormat df = DateFormat.getDateTimeInstance();
+
+                    cityField.setText(json.getString("name").toUpperCase(Locale.US) + ", " + json.getJSONObject("sys").getString("country"));
+                    detailsField.setText(details.getString("description").toUpperCase(Locale.US));
+                    currentTemperatureField.setText(String.format("%.2f", main.getDouble("temp")) + "°");
+                    humidity_field.setText("Humidity: " + main.getString("humidity") + "%");
+                    pressure_field.setText("Pressure: " + main.getString("pressure") + " hPa");
+                    updatedField.setText(df.format(new Date(json.getLong("dt") * 1000)));
+                    weatherIcon.setText(Html.fromHtml(Function.setWeatherIcon(details.getInt("id"),
+                            json.getJSONObject("sys").getLong("sunrise") * 1000,
+                            json.getJSONObject("sys").getLong("sunset") * 1000)));
+
+                    loader.setVisibility(View.GONE);
+
+                }
+            } catch (JSONException e) {
+                Toast.makeText(getContext(), "Error, Check City", Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
+
+
     }
+
+
 
 }

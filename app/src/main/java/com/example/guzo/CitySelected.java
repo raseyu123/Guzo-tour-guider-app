@@ -1,6 +1,7 @@
 package com.example.guzo;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.guzo.Model.CityId;
 import com.example.guzo.Model.city;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +37,7 @@ public class CitySelected extends AppCompatActivity implements OnFragmentInterac
 String title="";
     private FragmentManager fragmentManager;
     private Fragment fragment = null;
-  private   CityId cityIds;
+
 TextView city_name;
 ImageView cityPic;
 String cityId="";
@@ -49,6 +49,8 @@ private FrameLayout frameLayout;
 OnFragmentInteractionListener monFragmentInteractionListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -103,13 +105,13 @@ OnFragmentInteractionListener monFragmentInteractionListener;
                 int id = item.getItemId();
                 if (id==R.id.nav_discover){
                     fragment=new CityHome();
-                    fragment.setArguments(data);
+                   // fragment.setArguments(data);
                     getSupportActionBar().setTitle(title);
 
 
                 }else if (id==R.id.nav_need_to){
                     fragment = new CityDetailFragment();
-                    fragment.setArguments(data);
+                 //   fragment.setArguments(data);
                     getSupportActionBar().setTitle("Need to know");
 
 
@@ -187,7 +189,7 @@ OnFragmentInteractionListener monFragmentInteractionListener;
 
              @Override
              public void onFragmentInteraction(String id) {
-       monFragmentInteractionListener.onFragmentInteraction(this.cityId);
+    //   monFragmentInteractionListener.onFragmentInteraction(this.cityId);
              }
          }
 

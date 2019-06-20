@@ -1,7 +1,5 @@
 package com.example.guzo.Model;
 
-import com.singhinderjeet.json2java.Main;
-
 import java.util.List;
 
 public class WeatherResult {
@@ -53,13 +51,7 @@ public  WeatherResult(){
         this.base = base;
     }
 
-    public Main getMain() {
-        return main;
-    }
 
-    public void setMain(Main main) {
-        this.main = main;
-    }
 
     public Wind getWind() {
         return wind;
@@ -115,5 +107,13 @@ public  WeatherResult(){
 
     public void setCod(int cod) {
         this.cod = cod;
+    }
+
+    public Main getMain() {
+        return main;
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
     }
 }

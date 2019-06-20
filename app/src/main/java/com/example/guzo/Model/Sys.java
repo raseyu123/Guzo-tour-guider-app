@@ -1,6 +1,6 @@
 package com.example.guzo.Model;
 
-class Sys {
+public class Sys {
     private double message;
 
     private String country;
