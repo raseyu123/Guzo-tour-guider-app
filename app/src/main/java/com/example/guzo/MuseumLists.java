@@ -14,7 +14,17 @@ import androidx.fragment.app.Fragment;
  */
 public class MuseumLists extends Fragment {
 
+    private static MuseumLists   instance;
 
+
+    public static MuseumLists   getInstance(){
+
+        if (instance == null)
+            instance= new MuseumLists  ();
+
+        return instance;
+
+    }
     public MuseumLists() {
         // Required empty public constructor
     }

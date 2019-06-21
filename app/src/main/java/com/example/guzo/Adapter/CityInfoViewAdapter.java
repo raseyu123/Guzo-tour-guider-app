@@ -11,9 +11,15 @@ import java.util.List;
 public class CityInfoViewAdapter extends FragmentPagerAdapter {
      private final List<Fragment> fragmentList = new ArrayList<>();
      private final List<String> fragmentTitle = new ArrayList<>();
-    public CityInfoViewAdapter( FragmentManager fm) {
-        super (fm);
+
+    public CityInfoViewAdapter(@NonNull FragmentManager fm, int behavior) {
+        super(fm, behavior);
     }
+
+    public CityInfoViewAdapter(FragmentManager supportFragmentManager) {
+        super(supportFragmentManager);
+    }
+
 
     @NonNull
     @Override
@@ -34,7 +40,7 @@ public class CityInfoViewAdapter extends FragmentPagerAdapter {
 
     }
     @NonNull
-
+    @Override
     public CharSequence getPageTitle(int i){
         return fragmentTitle.get(i);
     }

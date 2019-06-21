@@ -2,7 +2,6 @@ package com.example.guzo;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,20 +10,19 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.guzo.Adapter.SelectedViewAdapter;
 import com.example.guzo.Model.city;
-import com.example.guzo.CityPreference;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +36,9 @@ public class CitySelected extends AppCompatActivity
 
 String title="";
     private FragmentManager fragmentManager;
-    private Fragment fragment = null;
 
+ TabLayout tabLayout;
+ViewPager viewPager;
 TextView city_name;
 ImageView cityPic;
 String cityId="";
@@ -74,8 +73,11 @@ private FrameLayout frameLayout;
 
     //  String title=getIntent().getStringExtra("city");
         //getSupportActionBar().setTitle(title);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        viewPager = (ViewPager) findViewById(R.id.citylist_view_pager);
+        setupViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.city_tab_list);
+        tabLayout.setupWithViewPager(viewPager);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
@@ -87,17 +89,16 @@ private FrameLayout frameLayout;
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        fragmentManager=getSupportFragmentManager();
-        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = new CityHome();
-
+        //fragmentManager=getSupportFragmentManager();
+       // final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+       new CitySelected();
+        getSupportActionBar().setTitle(title);
         final Bundle data = new Bundle();
         data.putString("Id",cityId);
-        fragment.setArguments(data);
+     //   fragment.setArguments(data);
 
         navigationView.setCheckedItem(R.id.nav_discover);
-        fragmentTransaction.replace(R.id.fragmentContain, fragment);
-        fragmentTransaction.commit();
+
         View headerView = navigationView.getHeaderView(0);
         city_name=(TextView)headerView.findViewById(R.id.nav_city_name);
         cityPic=(ImageView)headerView.findViewById(R.id.city_pic);
@@ -105,17 +106,19 @@ private FrameLayout frameLayout;
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id==R.id.nav_discover){
+                if (id==R.id.nav_discover) {
 
                     //fragment=new CityHome();
-                   // fragment.setArguments(data);
+                    // fragment.setArguments(data);
                     getSupportActionBar().setTitle(title);
-
+                    navigationView.setCheckedItem(R.id.nav_discover);
+                    return true;
 
                 }else if (id==R.id.nav_need_to){
                     Intent cityInfo = new Intent(CitySelected.this,CityNeedToKnow.class);
                    cityInfo.putExtra("CityId",cityId);
                     startActivity(cityInfo);
+
                  //   fragment = new CityDetailFragment();
                  //   fragment.setArguments(data);
                   //  getSupportActionBar().setTitle("Need to know");
@@ -124,9 +127,7 @@ private FrameLayout frameLayout;
                 }else if (id==R.id.nav_fav){}
                 else if (id==R.id.nav_view_city){
                 }
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragmentContain,fragment);
-                transaction.commit();
+
                 DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
                 assert  drawerLayout !=null;
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -139,18 +140,33 @@ private FrameLayout frameLayout;
 
     }
 
-    private void getDetailCity(String cityId) {
+             private void setupViewPager(ViewPager viewPager) {
+                 final Bundle data = new Bundle();
+                 data.putString("Id", cityId);
+
+                 SelectedViewAdapter selectedViewAdapter = new   SelectedViewAdapter(getSupportFragmentManager());
+
+                selectedViewAdapter.addFragment(AllCityPlaces.getInstance(), "All");
+
+                 AllCityPlaces.getInstance().setArguments(data);
+
+
+             selectedViewAdapter.addFragment(MuseumLists.getInstance(), "Museums");
+
+                 MuseumLists.getInstance().setArguments(data);
+             viewPager.setAdapter(selectedViewAdapter);
+             }
+
+             private void getDetailCity(String cityId) {
         city.child(cityId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                city cityies=dataSnapshot.getValue(com.example.guzo.Model.city.class);
+                city cityies = dataSnapshot.getValue(com.example.guzo.Model.city.class);
                 assert cityies != null;
-                title=cityies.getName();
+                title = cityies.getName();
                 getSupportActionBar().setTitle(cityies.getName());
                 Picasso.get().load(cityies.getImage()).into(cityPic);
-                 city_name.setText(cityies.getName());
-
-
+                city_name.setText(cityies.getName());
             }
 
             @Override

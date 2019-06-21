@@ -25,7 +25,17 @@ public class AllCityPlaces extends Fragment {
     RecyclerView recyclerView;
     Context context;
     private List<places> place;
+    private static AllCityPlaces  instance;
 
+
+    public static AllCityPlaces  getInstance(){
+
+        if (instance == null)
+            instance= new AllCityPlaces ();
+
+        return instance;
+
+    }
     public AllCityPlaces() {
         // Required empty public constructor
     }

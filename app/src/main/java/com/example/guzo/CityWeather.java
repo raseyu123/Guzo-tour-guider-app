@@ -52,7 +52,7 @@ public class CityWeather extends Fragment  implements PtrHandler {
     DatabaseReference city;
     String cityId="";
     private static CityWeather instance;
-String cities;
+
 
     public static CityWeather getInstance(){
 
