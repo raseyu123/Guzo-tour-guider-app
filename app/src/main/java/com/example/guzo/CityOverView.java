@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 
 
@@ -23,25 +25,28 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CityOverView extends Fragment  {
+public class CityOverView extends Fragment {
     private TextView city_name,text_description,over_view;
     private ImageView cityPic;
  String cityId;
     private FirebaseDatabase database;
     private DatabaseReference city;
+ private static CityOverView instance;
 
 
+        public static CityOverView getInstance(){
+
+       if (instance == null)
+           instance= new CityOverView();
+
+           return instance;
+
+        }
     public CityOverView() {
         // Required empty public constructor
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        database = FirebaseDatabase.getInstance();
-        city = database.getReference("City");
-        this.cityId = getArguments().getString("Ids");
-        loadData("01");
-    }
+
 
 
 
@@ -60,12 +65,18 @@ public class CityOverView extends Fragment  {
         over_view =(TextView)v.findViewById(R.id.over_view);
        cityPic = (ImageView)v.findViewById(R.id.image_city);
 
-
+        cityId=this.getArguments().getString("Id");
 
 
         return v;
     }
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        database = FirebaseDatabase.getInstance();
+        city = database.getReference("City");
 
+        loadData(cityId);
+    }
     private void loadData(String cityId) {
 
         city.child(cityId).addValueEventListener(new ValueEventListener() {

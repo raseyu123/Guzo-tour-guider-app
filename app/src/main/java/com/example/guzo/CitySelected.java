@@ -1,5 +1,6 @@
 package com.example.guzo;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.guzo.Model.city;
+import com.example.guzo.CityPreference;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
-public class CitySelected extends AppCompatActivity implements OnFragmentInteractionListener
+public class CitySelected extends AppCompatActivity
          {
 
 String title="";
@@ -46,7 +48,7 @@ DatabaseReference city;
 Toolbar toolbar;
 NavigationView navigationView;
 private FrameLayout frameLayout;
-OnFragmentInteractionListener monFragmentInteractionListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -104,15 +106,19 @@ OnFragmentInteractionListener monFragmentInteractionListener;
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id==R.id.nav_discover){
-                    fragment=new CityHome();
+
+                    //fragment=new CityHome();
                    // fragment.setArguments(data);
                     getSupportActionBar().setTitle(title);
 
 
                 }else if (id==R.id.nav_need_to){
-                    fragment = new CityDetailFragment();
+                    Intent cityInfo = new Intent(CitySelected.this,CityNeedToKnow.class);
+                   cityInfo.putExtra("CityId",cityId);
+                    startActivity(cityInfo);
+                 //   fragment = new CityDetailFragment();
                  //   fragment.setArguments(data);
-                    getSupportActionBar().setTitle("Need to know");
+                  //  getSupportActionBar().setTitle("Need to know");
 
 
                 }else if (id==R.id.nav_fav){}
@@ -143,6 +149,7 @@ OnFragmentInteractionListener monFragmentInteractionListener;
                 getSupportActionBar().setTitle(cityies.getName());
                 Picasso.get().load(cityies.getImage()).into(cityPic);
                  city_name.setText(cityies.getName());
+
 
             }
 
@@ -187,10 +194,7 @@ OnFragmentInteractionListener monFragmentInteractionListener;
     }
 
 
-             @Override
-             public void onFragmentInteraction(String id) {
-    //   monFragmentInteractionListener.onFragmentInteraction(this.cityId);
-             }
+
          }
 
 

@@ -8,6 +8,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="open_weather_api">9943dae0568ad3db55abcee5dd9a4a37</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -54,5 +55,6 @@
     <string name="Sunset" />
     <string name="Geo_coords" />
     <string name="change_city">Change City</string>
+    <string name="place_not_found" />
 
 </resources>
