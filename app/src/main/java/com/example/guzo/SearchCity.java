@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.guzo.Model.city;
+import com.example.guzo.Model.City;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class SearchCity extends AppCompatActivity {
   //search
-    FirebaseRecyclerAdapter<city,CityViewAdapter> searchAdapter;
+    FirebaseRecyclerAdapter<City,CityViewAdapter> searchAdapter;
     List<String> suggestList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
     RecyclerView recyclerView;
@@ -42,7 +42,7 @@ public class SearchCity extends AppCompatActivity {
        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         materialSearchBar =(MaterialSearchBar)findViewById(R.id.searchBar);
-        materialSearchBar.setHint("Enter city name");
+        materialSearchBar.setHint("Enter City name");
         loadSuggest();
         
         materialSearchBar.setCardViewElevation(10);

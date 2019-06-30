@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
 
 
+import com.example.guzo.Model.City;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,7 +82,7 @@ public class CityOverView extends Fragment {
         city.child(cityId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                com.example.guzo.Model.city cities=dataSnapshot.getValue(com.example.guzo.Model.city.class);
+                City cities=dataSnapshot.getValue(City.class);
                 assert cities != null;
 
                 Picasso.get().load(cities.getImage()).into(cityPic);

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.guzo.Interface.ItemClickListener;
-import com.example.guzo.Model.city;
+import com.example.guzo.Model.City;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
             Context context;
             FirebaseDatabase database;
             DatabaseReference cityList;
-            FirebaseRecyclerAdapter<city,CityViewAdapter> adapter ;
+            FirebaseRecyclerAdapter<City,CityViewAdapter> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +53,15 @@ public class MainActivity extends AppCompatActivity
     }
             private void loadCity( ) {
 
-                adapter= new FirebaseRecyclerAdapter<city, CityViewAdapter>(city.class, R.layout.activity_city_item, CityViewAdapter.class, cityList) {
+                adapter= new FirebaseRecyclerAdapter<City, CityViewAdapter>(City.class, R.layout.activity_city_item, CityViewAdapter.class, cityList) {
 
 
 
-                    protected void populateViewHolder(CityViewAdapter cityViewAdapter, city model , int position) {
+                    protected void populateViewHolder(CityViewAdapter cityViewAdapter, City model , int position) {
 
                         cityViewAdapter.cityName.setText(model.getName());
                         Picasso.get().load(model.getImage()).into(cityViewAdapter.cityPic);
-                        final city clickItem = model;
+                        final City clickItem = model;
                         cityViewAdapter.setItemClickListener(new ItemClickListener() {
                             @Override
                             public void onClick(View view, int position, boolean isLongClick) {

@@ -20,7 +20,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.guzo.Adapter.SelectedViewAdapter;
-import com.example.guzo.Model.city;
+import com.example.guzo.Model.City;
+import com.example.guzo.Museums.MuseumLists;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -71,7 +72,7 @@ private FrameLayout frameLayout;
          // cityIds.setCityId(cityId);
       }
 
-    //  String title=getIntent().getStringExtra("city");
+    //  String title=getIntent().getStringExtra("City");
         //getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.citylist_view_pager);
@@ -161,7 +162,7 @@ private FrameLayout frameLayout;
         city.child(cityId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                city cityies = dataSnapshot.getValue(com.example.guzo.Model.city.class);
+                City cityies = dataSnapshot.getValue(City.class);
                 assert cityies != null;
                 title = cityies.getName();
                 getSupportActionBar().setTitle(cityies.getName());

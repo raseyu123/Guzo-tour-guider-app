@@ -8,9 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.guzo.Adapter.CityInfoViewAdapter;
-import com.example.guzo.Model.city;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class CityNeedToKnow extends AppCompatActivity {
     private Toolbar toolbar;

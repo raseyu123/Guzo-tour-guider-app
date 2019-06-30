@@ -41,7 +41,7 @@ public class PlaceViewAdapter  extends RecyclerView.Adapter<PlaceViewAdapter.Pla
                     public void onClick(View v) {
 
                         Intent intent = new Intent(itemView.getContext(), PlaceDetail.class);
-                        //  intent.putExtra("city", (Parcelable) cityNames);
+                        //  intent.putExtra("City", (Parcelable) cityNames);
                         itemView.getContext().startActivity(intent);
 
 

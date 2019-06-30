@@ -3,7 +3,6 @@ package com.example.guzo;
 
 
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -19,16 +18,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.guzo.Model.city;
+import com.example.guzo.Model.City;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import java.text.DateFormat;
 import java.util.Date;
@@ -72,8 +69,7 @@ public class CityWeather extends Fragment  implements PtrHandler {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
         city = database.getReference("City");
-       // setContentView(R.layout.fragment_city_weather);
-        //updateWeatherData(new CityPreference(getActivity()).getCity());
+
 
     }
 
@@ -108,7 +104,7 @@ public class CityWeather extends Fragment  implements PtrHandler {
         city.child(cityId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                com.example.guzo.Model.city cityies = dataSnapshot.getValue(com.example.guzo.Model.city.class);
+                City cityies = dataSnapshot.getValue(City.class);
                 assert cityies != null;
 
 
