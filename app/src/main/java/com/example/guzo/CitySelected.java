@@ -92,7 +92,7 @@ private FrameLayout frameLayout;
         toggle.syncState();
         //fragmentManager=getSupportFragmentManager();
        // final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-       new CitySelected();
+       new AllCityPlaces();
         getSupportActionBar().setTitle(title);
         final Bundle data = new Bundle();
         data.putString("Id",cityId);
@@ -110,12 +110,14 @@ private FrameLayout frameLayout;
                 if (id==R.id.nav_discover) {
 
                     //fragment=new CityHome();
-                    // fragment.setArguments(data);
+                    // fragment.setArguments(data)
                     getSupportActionBar().setTitle(title);
+                    new AllCityPlaces();
                     navigationView.setCheckedItem(R.id.nav_discover);
                     return true;
 
                 }else if (id==R.id.nav_need_to){
+                    navigationView.setCheckedItem(R.id.nav_need_to);
                     Intent cityInfo = new Intent(CitySelected.this,CityNeedToKnow.class);
                    cityInfo.putExtra("CityId",cityId);
                     startActivity(cityInfo);
