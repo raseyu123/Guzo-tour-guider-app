@@ -60,7 +60,7 @@ public class MuseumLists extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_museum_lists, container, false);
         cityId=this.getArguments().getString("Id");
-        Toast.makeText(getContext(), cityId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(v.getContext(), cityId, Toast.LENGTH_SHORT).show();
 
         return v;
 
@@ -94,8 +94,8 @@ public class MuseumLists extends Fragment {
                 museumListsViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent museumDetail = new Intent(getContext(), CitySelected.class);
-                        museumDetail.putExtra("CityId",adapter.getRef(position).getKey());
+                        Intent museumDetail = new Intent(view.getContext(), MuseumDetail.class);
+                       museumDetail.putExtra("CityId",adapter.getRef(position).getKey());
                         startActivity(museumDetail);
                         // Toast.makeText(MainActivity.this, ""+clickItem.getName(), Toast.LENGTH_SHORT).show();
                     }

@@ -24,7 +24,8 @@ public class CityViewAdapter extends RecyclerView.ViewHolder implements View.OnC
         this.itemClickListener=itemClickListener;
     }
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         itemClickListener.onClick(v,getAdapterPosition(),false);
     }}
 

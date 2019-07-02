@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.guzo.R;
@@ -34,6 +35,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MuseumMap extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -53,8 +57,8 @@ public static final int REQUEST_CHECK_SETTINGS = 123;
 LocationRequest mLocationRequest;
 int INTERVAL = 1000;
 int FASTEST_INTERVAL = 500;
-
-
+FloatingActionButton floatingActionButton;
+Polyline polyline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +67,7 @@ int FASTEST_INTERVAL = 500;
         SupportMapFragment mapFragment =(SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapMuseum);
         mapFragment.getMapAsync(this);
-
+floatingActionButton =(FloatingActionButton)findViewById(R.id.current_fab);
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -73,7 +77,12 @@ int FASTEST_INTERVAL = 500;
         mLocationRequest.setInterval(INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
+floatingActionButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        getCurrentLocation();
+    }
+});
     }
 
     private ResultCallback<LocationSettingsResult> mResultCallbackFromSetting = new ResultCallback<LocationSettingsResult>() {
@@ -274,4 +283,5 @@ int FASTEST_INTERVAL = 500;
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
 }

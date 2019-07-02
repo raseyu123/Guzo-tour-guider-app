@@ -4,6 +4,7 @@
     package="com.example.guzo">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,12 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Museums.Main2Activity"></activity>
         <activity android:name=".CityNeedToKnow" />
+        <activity android:name=".Museums.MuseumMap" />
         <activity
             android:name=".CityDetail"
             android:label="@string/title_activity_city_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PlaceDetail" />
+        <activity android:name=".Museums.MuseumDetail" />
         <activity android:name=".PlaceItems" />
         <activity android:name=".SearchCity" />
         <activity
