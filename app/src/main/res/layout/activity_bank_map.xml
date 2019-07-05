@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Museums.HotelMap">
+    tools:context=".Banks.BankMap">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         >
         <fragment
             android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:id="@+id/mapMuseum"
+            android:id="@+id/mapBank"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

@@ -20,6 +20,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.guzo.Adapter.SelectedViewAdapter;
+import com.example.guzo.Banks.BankLists;
+import com.example.guzo.Hotels.HottelLists;
+import com.example.guzo.Model.Banks;
 import com.example.guzo.Model.City;
 import com.example.guzo.Museums.MuseumLists;
 import com.google.android.material.navigation.NavigationView;
@@ -84,18 +87,17 @@ private FrameLayout frameLayout;
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        final Bundle bundle = new Bundle();
-
+        final Bundle data = new Bundle();
+        data.putString("Id", cityId);
 
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         //fragmentManager=getSupportFragmentManager();
        // final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-       new AllCityPlaces();
+       new AllCityPlaces().setArguments(data);
         getSupportActionBar().setTitle(title);
-        final Bundle data = new Bundle();
-        data.putString("Id",cityId);
+
      //   fragment.setArguments(data);
 
         navigationView.setCheckedItem(R.id.nav_discover);
@@ -112,9 +114,9 @@ private FrameLayout frameLayout;
                     //fragment=new CityHome();
                     // fragment.setArguments(data)
                     getSupportActionBar().setTitle(title);
-                    new AllCityPlaces();
+                   new AllCityPlaces().setArguments(data);;
                     navigationView.setCheckedItem(R.id.nav_discover);
-                    return true;
+
 
                 }else if (id==R.id.nav_need_to){
                     navigationView.setCheckedItem(R.id.nav_need_to);
@@ -127,7 +129,12 @@ private FrameLayout frameLayout;
                   //  getSupportActionBar().setTitle("Need to know");
 
 
-                }else if (id==R.id.nav_fav){}
+                }else if (id==R.id.nav_fav){
+                    navigationView.setCheckedItem(R.id.nav_fav);
+                    Intent cityInfo = new Intent(CitySelected.this,Currency.class);
+
+                    startActivity(cityInfo);
+                }
                 else if (id==R.id.nav_view_city){
                 }
 
@@ -149,7 +156,7 @@ private FrameLayout frameLayout;
 
                  SelectedViewAdapter selectedViewAdapter = new   SelectedViewAdapter(getSupportFragmentManager());
 
-                selectedViewAdapter.addFragment(AllCityPlaces.getInstance(), "All");
+                selectedViewAdapter.addFragment(AllCityPlaces.getInstance(), "City Map");
 
                  AllCityPlaces.getInstance().setArguments(data);
 
@@ -157,6 +164,9 @@ private FrameLayout frameLayout;
              selectedViewAdapter.addFragment(MuseumLists.getInstance(), "Museums");
 
                  MuseumLists.getInstance().setArguments(data);
+                 selectedViewAdapter.addFragment(HottelLists.getInstance(), "Hotels");
+                 HottelLists.getInstance().setArguments(data);
+
              viewPager.setAdapter(selectedViewAdapter);
              }
 

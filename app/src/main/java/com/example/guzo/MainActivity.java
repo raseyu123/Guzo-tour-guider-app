@@ -23,12 +23,13 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         {
+            FirebaseRecyclerAdapter<City,CityViewAdapter> adapter ;
             RecyclerView recycler_city;
             RecyclerView.LayoutManager layoutManager;
             Context context;
             FirebaseDatabase database;
             DatabaseReference cityList;
-            FirebaseRecyclerAdapter<City,CityViewAdapter> adapter ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -129,7 +129,7 @@ public class CityWeather extends Fragment  implements PtrHandler {
                     handler.post(new Runnable(){
                         public void run(){
                             Toast.makeText(getContext(),
-                                  getActivity().getString(R.string.place_not_found),
+                                  getActivity().getApplicationContext().getString(R.string.place_not_found),
                                     Toast.LENGTH_LONG).show();
                         }
                     });

@@ -1,24 +1,25 @@
 package com.example.guzo.Model;
 
-public class Museums {
+public class Hotels {
     private String Name;
     private String Image;
     private String Description;
     private String Address;
-
+    private String LocationName;
     private String Phone;
     private String CityId;
     private Double Lat;
     private Double Lon;
 
-    public Museums(){
+    public Hotels(){
 
     }
-    public Museums(String name, String image, String description, String address,String phone, String cityId, Double lat, Double lon) {
+    public Hotels(String name, String image, String description, String address, String locationName, String phone, String cityId, Double lat, Double lon) {
         Name = name;
         Image = image;
         Description = description;
         Address = address;
+        LocationName = locationName;
         Phone = phone;
         CityId = cityId;
         Lat = lat;
@@ -57,6 +58,13 @@ public class Museums {
         Address = address;
     }
 
+    public String getLocationName() {
+        return LocationName;
+    }
+
+    public void setLocationName(String locationName) {
+        LocationName = locationName;
+    }
 
     public String getPhone() {
         return Phone;

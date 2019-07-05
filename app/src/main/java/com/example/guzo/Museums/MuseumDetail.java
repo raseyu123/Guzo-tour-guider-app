@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.guzo.CityNeedToKnow;
-import com.example.guzo.CitySelected;
-import com.example.guzo.Model.City;
 import com.example.guzo.Model.Museums;
 import com.example.guzo.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -28,6 +25,7 @@ public class MuseumDetail extends AppCompatActivity {
     ImageView museum_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnDirection;
+    TextView description,mtitles;
    String museumId="";
 FirebaseDatabase database;
 DatabaseReference museum;
@@ -48,12 +46,14 @@ DatabaseReference museum;
               }
         museum_image= findViewById(R.id.museum_image_collapsing);
         btnDirection= findViewById(R.id.museum_direction);
-
+        description= findViewById(R.id.museumDescription);
+              mtitles= findViewById(R.id.musTitle);
                collapsingToolbarLayout= findViewById(R.id.museum_collapsing);
              btnDirection.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
-                      Intent mapsss = new Intent(MuseumDetail.this, MuseumMap.class);
+                      Intent mapsss = new Intent(MuseumDetail.this, HotelMap.class);
+                      mapsss.putExtra("museumId", museumId );
                       startActivity(mapsss);
 
                   }
@@ -75,6 +75,8 @@ DatabaseReference museum;
 
                 collapsingToolbarLayout.setTitle(museumies.getName());
                 Picasso.get().load(museumies.getImage()).into(museum_image);
+                description.setText(museumies.getDescription());
+                mtitles.setText(museumies.getName());
 
             }
 

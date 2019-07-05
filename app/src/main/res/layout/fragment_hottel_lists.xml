@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-
+    tools:context=".Hotels.HottelLists">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,7 +11,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_emerg_lists"
+            android:id="@+id/recycler_hotel_lists"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
@@ -24,6 +23,5 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </RelativeLayout>
-
 
 </FrameLayout>

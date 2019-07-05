@@ -55,5 +55,15 @@
     <string name="change_city">Change City</string>
     <string name="place_not_found" />
     <string name="title_activity_maps">Map</string>
+    <string name="_33_05_etb">33.05 ETB</string>
+    <string name="usd">USD</string>
+    <string name="currency">Currency</string>
+    <string name="_28_99_etb">28.99 ETB</string>
+    <string name="_34_5_etb">34.5 ETB</string>
+    <string name="drham">DRHAM</string>
+    <string name="pound">POUND</string>
+    <string name="_35_4">35.4</string>
+    <string name="foriegn_currency">Foriegn Currency</string>
+    <string name="exchange_rate">Exchange rate</string>
 
 </resources>

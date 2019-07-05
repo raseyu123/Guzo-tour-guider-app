@@ -64,6 +64,8 @@ public class CityNeedToKnow extends AppCompatActivity {
         adapter.addFragment(CityWeather.getInstance(), "Weather");
 
         CityWeather.getInstance().setArguments(data);
+        adapter.addFragment(CityEmergency.getInstance(), "Emergency Contacts");
+        CityEmergency.getInstance().setArguments(data);
         viewPager.setAdapter(adapter);
     }
 }

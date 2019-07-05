@@ -1,5 +1,7 @@
 package com.example.guzo.Adapter;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -33,7 +35,13 @@ public class SelectedViewAdapter extends FragmentPagerAdapter {
             fragmentTitle.add(title);
 
         }
-        @NonNull
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        super.destroyItem(container, position, object);
+    }
+
+    @NonNull
         @Override
         public CharSequence getPageTitle(int i){
             return fragmentTitle.get(i);
